@@ -55,12 +55,12 @@
                            <li class="nav-item {{ Request::is('admin/books') ? 'active ' : '' }}">
                                 <a class="nav-link" href="{{ route('books.index') }}">Buku</a>
                             </li>
-                            {{--  <li class="nav-item {{ Request::is('admin/members') ? 'active ' : '' }}">
+                             <li class="nav-item {{ Request::is('admin/members') ? 'active ' : '' }}">
                                 <a class="nav-link" href="{{ route('members.index') }}">Member</a>
                             </li>
                             <li class="nav-item {{ Request::is('admin/statistics') ? 'active ' : '' }}">
                                 <a class="nav-link" href="{{ route('statistics.index') }}">Statistik</a>
-                            </li>  --}}
+                            </li>  
                             @endrole
                             @if (auth()->check())
                                 {{--  <li class="nav-item {{ Request::is('settings/profile') ? 'active ' : '' }}">

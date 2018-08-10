@@ -165,6 +165,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Yajra\DataTables\HtmlServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 // alias-> 'Datatables' => Yajra\Datatables\Facades\Datatables::class,
     
     ],
@@ -220,6 +221,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Laratrust'=> Laratrust\LaratrustFacade::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'Excel'=> Maatwebsite\Excel\Facades\Excel::class,
         
     ],
 

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\BorrowLog;
 use Illuminate\Support\Facades\Auth;
 use App\Exceptions\BookException;
+use Excel;
 class BooksController extends Controller
 {
     /**
@@ -220,4 +221,41 @@ Session::flash("flash_notification", [
     }
 return redirect('/');
 }
+
+public function export()
+{
+return view('books.export');
+}
+public function exportPost(Request $request) {
+    // validasi
+$this->validate($request, [
+    'author_id'=>'required',
+    ], [
+    'author_id.required'=>'Anda belum memilih penulis. Pilih minimal 1 penulis.'
+    ]);
+    $books = Book::whereIn('id', $request->get('author_id'))->get();
+    Excel::create('Data Buku Larapus', function($excel) use ($books) {
+    // Set property
+    $excel->setTitle('Data Buku Larapus')
+    ->setCreator(Auth::user()->name);
+    $excel->sheet('Data Buku', function($sheet) use ($books) {
+    $row = 1;
+    $sheet->row($row, [
+    'Judul',
+    'Jumlah',
+'Stok',
+'Penulis'
+]);
+foreach ($books as $book) {
+$sheet->row(++$row, [
+$book->title,
+$book->amount,
+$book->stock,
+$book->author->name
+]);
+}
+});
+})->export('xls');
+ }
+
 }

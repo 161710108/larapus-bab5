@@ -22,6 +22,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'admin', 'middleware'=>['auth']], function () {
     Route::resource('authors', 'AuthorsController');
     Route::resource('books', 'BooksController');
+    Route::resource('members', 'MembersController');
+    Route::get('statistics', [
+        'as'=>'statistics.index',
+        'uses'=>'StatisticsController@index'
+        ]);
+
+        Route::get('export/books', [
+            'as'
+            => 'export.books',
+            'uses' => 'BooksController@export'
+            ]);
+            Route::post('export/books', [
+            'as'
+            => 'export.books.post',
+            'uses' => 'BooksController@exportPost'
+            ]);
 });
 
 Route::get('books/{book}/borrow', [
@@ -37,3 +53,13 @@ Route::put('books/{book}/return', [
         'uses'
         => 'BooksController@returnBack'
         ]);
+
+Route::get('auth/verify/{token}', 'Auth\RegisterController@verify');
+
+Route::get('auth/send-verification', 'Auth\RegisterController@sendVerification');
+Route::get('settings/profile', 'SettingsController@profile');
+Route::get('settings/profile/edit', 'SettingsController@editProfile');
+Route::post('settings/profile', 'SettingsController@updateProfile');
+
+Route::get('settings/password', 'SettingsController@editPassword');
+Route::post('settings/password', 'SettingsController@updatePassword');

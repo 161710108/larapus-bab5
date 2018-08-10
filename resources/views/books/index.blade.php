@@ -13,7 +13,8 @@
                 <div class="card-header">Data Buku</div>
                 <br>
                 <h2 class="panel-title">&nbsp&nbspBuku</h2>
-<p> &nbsp&nbsp&nbsp<a class="btn btn-primary" href="{{ url('/admin/books/create') }}">Tambah</a></p>
+<p> &nbsp&nbsp&nbsp<a class="btn btn-primary" href="{{ url('/admin/books/create') }}">Tambah</a>
+<a class="btn btn-primary" href="{{ url('/admin/export/books') }}">Export</a></p>
 <div class="card-body">
 {!! $html->table(['class'=>'table-striped']) !!}
 </div>
