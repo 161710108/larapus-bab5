@@ -45,27 +45,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @if (Auth::check())
-                            <li class="nav-item {{ Request::is('home') ? 'active ' : '' }}">
-                                <a class="nav-link" href="{{ url('/home') }}">Dashboard</a>
-                            </li>
+                        {!! Html::smartNav(url('/home'), 'Dashboard') !!} &nbsp > &nbsp
+                        
                             @role('admin')
-                            <li class="nav-item {{ Request::is('admin/authors') ? 'active ' : '' }}">
-                                <a class="nav-link" href="{{ route('authors.index') }}">Penulis</a>
-                            </li>
-                           <li class="nav-item {{ Request::is('admin/books') ? 'active ' : '' }}">
-                                <a class="nav-link" href="{{ route('books.index') }}">Buku</a>
-                            </li>
-                             <li class="nav-item {{ Request::is('admin/members') ? 'active ' : '' }}">
-                                <a class="nav-link" href="{{ route('members.index') }}">Member</a>
-                            </li>
-                            <li class="nav-item {{ Request::is('admin/statistics') ? 'active ' : '' }}">
-                                <a class="nav-link" href="{{ route('statistics.index') }}">Statistik</a>
-                            </li>  
+                            {!! Html::smartNav(route('authors.index'), 'Penulis') !!}&nbsp > &nbsp
+                            {!! Html::smartNav(route('books.index'), 'Buku') !!}&nbsp > &nbsp
+                            {!! Html::smartNav(route('members.index'), 'Member') !!}&nbsp > &nbsp
+                            {!! Html::smartNav(route('statistics.index'), 'Peminjaman') !!}  &nbsp > &nbsp
                             @endrole
                             @if (auth()->check())
-                                {{--  <li class="nav-item {{ Request::is('settings/profile') ? 'active ' : '' }}">
-                                    <a class="nav-link" href="{{ url('/settings/profile') }}">Profil</a>
-                                </li>  --}}
+                            {!! Html::smartNav(url('/settings/profile'), 'Profil') !!}
                             @endif
                         @endif
                     </ul>
@@ -114,7 +103,7 @@
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="{{ asset('js/selectize.min.js') }}"></script>
+    <script src="{{ asset('js/standalone/selectize.min.js') }}"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     @yield('scripts')
 </body>
